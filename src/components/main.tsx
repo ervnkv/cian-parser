@@ -1,19 +1,15 @@
-// React
 // UI
 import { Alert, Box, Card, CardContent, CircularProgress, Stack, Typography } from "@mui/material";
 // Компоненты
+import { MainCard } from "./main-components/mainCard";
 // Redux-toolkit
 import { useAppSelector } from "../store";
-import { MainCard } from "./main-components/mainCard";
-// Типы
 
 
 type Props = {
     width?: string | number
 }
 export const Main = ({width}: Props) => {
-  // const dispatch = useAppDispatch()
-  
   const {items, status, statusText} = useAppSelector(state => state.parse)
 
   return (

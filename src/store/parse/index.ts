@@ -31,7 +31,6 @@ const parseSlice = createSlice({
             .addMatcher(isRejected, (state, action: AnyAction) => {
                 state.status = "error"
                 state.statusText = action.error.message
-                console.log(action.error.message)
             })
             .addMatcher(isPending, (state) => {
                 state.status = "pending"

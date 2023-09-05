@@ -1,13 +1,9 @@
-// React
 // UI
-import { Alert, Box, Button, Card, CardContent, CircularProgress, Stack, Typography } from "@mui/material";
-
+import { Box, Button, Card, CardContent, Stack, Typography } from "@mui/material";
 // Компоненты
-// Redux-toolkit
-import { useAppSelector } from "../../store";
-import { CianParseItem } from "../../store/parse/types";
 import Carousel from "react-material-ui-carousel";
 // Типы
+import { CianParseItem } from "../../store/parse/types";
 
 
 type Props = {
@@ -15,7 +11,6 @@ type Props = {
 }
 export const MainCard = ({item}: Props) => {
   console.dir(item)
-  // const dispatch = useAppDispatch()
 
   const Currency = (number: number) => new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(number)
 
@@ -50,7 +45,6 @@ export const MainCard = ({item}: Props) => {
             <Box sx={{
               display: "grid",
               gridTemplateRows: "1rem 13rem 2rem",
-              // height: "100%",
               gap:"1rem",
             }}>
               <Stack direction={"row"} justifyContent={"space-between"}>

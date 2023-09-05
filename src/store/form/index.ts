@@ -5,6 +5,7 @@ import { createUrlCian } from "./utils";
 const dataDefault: Form = {
     deal_type: "sale",
     engine_version: 2,
+    region: 1,
 }
 const initialState = {
     data: dataDefault,

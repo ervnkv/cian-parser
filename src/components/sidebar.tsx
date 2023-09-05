@@ -1,6 +1,5 @@
-// React
 // UI
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Link, Stack, Typography } from "@mui/material";
 // Компоненты
 import SelectBase from "../components/low-level/selectBase";
 // Redux-toolkit
@@ -8,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../store";
 import { setData } from "../store/form";
 import { constFlatParams, constFlatTypes, constOfferTypeItems, constOfficesTypes, constSuburbanTypes } from "../store/form/consts";
 import { parseCian } from "../store/parse/async-actions";
+import { constRegionItems } from "../store/form/constsRegions";
 // Типы
 
 
@@ -19,27 +19,6 @@ export const Sidebar = ({width}: Props) => {
   const dispatch = useAppDispatch()
   
   const {data, urlCian} = useAppSelector(state => state.form)
-//   const [search, setSearch] = useState("")
-
-//   const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setSearch(e.target.value)
-//     const value = e.target.value
-//     const coords = value.split(/[.,:;\s]+/)
-//     const lat = parseFloat(coords[0])
-//     const lng = parseFloat(coords[1])
-//     if (lat && lng) {
-//       dispatch(setData({lat: lat}))
-//       dispatch(setData({lng: lng}))
-//     } else {
-//       dispatch(setData({lat: undefined}))
-//       dispatch(setData({lng: undefined}))
-//     }
-//   }
-
-  const handleClick = async () => {
-    // setUrl("cian-api/cat.php?" + createUrl(data))/
-  }
-
 
   return (
     <Stack 
@@ -52,15 +31,15 @@ export const Sidebar = ({width}: Props) => {
             p:"1rem"
         }}
     >
-        {/* <TextField
-            label='Координаты объекта'
-            placeholder='53.238738, 50.275480'
-            variant="outlined"
-            value={search}
-            onChange={handleChangeSearch}
-            inputProps={{sx:{p: "0.4rem"}}}
-            helperText={(search !== "" && (!data.lat || !data.lng)) ? "Некорректные координаты" : ""}
-        /> */}
+        <SelectBase
+            items={constRegionItems}
+            item_id={"id"}
+            item_desc={"fullName"}
+            label="Регион"
+            name="region"
+            value={String(data.region) || null}
+            onChange={(field, value) => dispatch(setData({[field]: Number(value)}))}
+        />
         <SelectBase
             items={constOfferTypeItems}
             item_id={"id"}
@@ -125,7 +104,13 @@ export const Sidebar = ({width}: Props) => {
             onClick={urlCian ? () => dispatch(parseCian(urlCian)) : undefined}
         >Поиск</Button>
 
-        {/* <Typography variant="caption" sx={{wordWrap: "break-word"}}>{urlCian}</Typography> */}
+        <Link 
+            variant="caption" 
+            sx={{wordWrap: "break-word"}}
+            href={urlCian}
+        >
+            {urlCian}
+        </Link>
     </Stack>
   )
 }
