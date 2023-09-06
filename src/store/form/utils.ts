@@ -1,6 +1,7 @@
 import { Form } from "./types"
 
-const baseCianProxyURL = "cian-api/cat.php?"
+const baseCianProxyURL = "https://cian.ru/cat.php?"
+
 export const createUrlCian = (obj: Form) => {
     const queryStringArray = Object.entries(obj).filter(([key, value]) => value).map(([key, value]) => {
       const encodedKey = encodeURIComponent(key)

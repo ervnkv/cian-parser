@@ -1,10 +1,39 @@
 
-export type Form = General & Realty & Price & Area & Coordinates
+export type Form = General & Realty & Price & Area & Coordinates & Region
 
 // Основные параметры
 type General = {
     deal_type: "sale"
     engine_version: 2
+}
+// Регион
+type Region = {
+    region: number
+}
+export type RegionItem = {
+    id: number,
+    fullName: string,
+    displayName: string,
+    name: string,
+    namePrepositional: string,
+    hasMetro: boolean,
+    hasHighway: boolean,
+    hasDistricts: boolean,
+    hasRegionalDistricts: boolean,
+    parentId: number | null,
+    mainTownId: number | null,
+    lat: number,
+    lng: number,
+    boundedBy: {
+        lowerCorner: {
+            lat: number,
+            lng: number
+        },
+        upperCorner: {
+            lat: number,
+            lng: number
+        }
+    }
 }
 // Параметры недвижимости
 type Realty = OfferTypeFlat | OfferTypeSuburban | OfferTypeOffices | HeatingTypesSuburban

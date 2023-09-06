@@ -12,7 +12,7 @@ function App() {
       width={"100dvw"}
     >
       <Sidebar width={"20rem"}/>
-      <Main></Main>
+      <Main/>
     </Stack>
   )
 }
