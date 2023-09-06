@@ -7,7 +7,7 @@ type General = {
     engine_version: 2
 }
 // Параметры недвижимости
-type Realty = OfferTypeFlat | OfferTypeSuburban | OfferTypeOffices
+type Realty = OfferTypeFlat | OfferTypeSuburban | OfferTypeOffices | HeatingTypesSuburban
 export type OfferTypeFlat = {
     "offer_type"?: "flat"
     "object_type[0]"?: Value1_2
@@ -21,10 +21,20 @@ export type OfferTypeOffices = {
     "offer_type"?: "offices"
     "office_type[0]"?: Value1_12
 }
+export type HeatingTypesSuburban = {
+    "offer_type"?: "suburban"
+    "heating_type"?: Value1_6
+}
+
+
+
+
+
+
 type Value1_2 = "1" | "2"
 type Value1_4 = "1" | "2" | "3" | "4"
 type Value1_12 = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12"
-
+type Value1_6 = "1" | "2" | "3" | "4" | "5" | "6" | "6300" | "6301" | "6302"
 
 // Параметры фильтров
 type Price = {

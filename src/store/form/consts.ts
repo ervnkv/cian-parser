@@ -1,4 +1,4 @@
-import { Form, OfferTypeFlat, OfferTypeOffices, OfferTypeSuburban } from "./types";
+import { Form, HeatingTypesSuburban, OfferTypeFlat, OfferTypeOffices, OfferTypeSuburban,  } from "./types";
 
 
 
@@ -20,6 +20,8 @@ export const constOfferTypeItems: OfferTypeItem[] = [
         desc: "Коммерческое"
     },
 ]
+
+
 
 type FlatTypes = {
     id: OfferTypeFlat["object_type[0]"]
@@ -103,6 +105,49 @@ export const constSuburbanTypes: SuburbanTypes[] = [
     {
         id: "4",
         desc: "Таунхаус"
+    },
+]
+
+type HeatingTypes = {
+    id: HeatingTypesSuburban["heating_type"]
+    desc: string
+}
+export const constHeatingTypes: HeatingTypes[] = [
+    {
+        id: '2',
+        desc: 'Центральное газовое'  
+    },
+    {
+        id: '3',
+        desc: 'Угольное'  
+    },
+    {
+        id: '4',
+        desc: 'Печь'  
+    },
+    {
+        id: '5',
+        desc: 'Камин'  
+    },
+    {
+        id: '6',
+        desc: 'Электрическое'  
+    },
+    {
+        id: '6300',
+        desc: 'Автономное газовое'  
+    },
+    {
+        id: '6301',
+        desc: 'Дизельное'  
+    },
+    {
+        id: '6302',
+        desc: 'Твердотопливное'  
+    },
+    {
+        id: '1',
+        desc: 'Без отопления'  
     },
 ]
 
