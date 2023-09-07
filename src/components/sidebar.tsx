@@ -5,7 +5,7 @@ import SelectBase from "../components/low-level/selectBase";
 // Redux-toolkit
 import { useAppDispatch, useAppSelector } from "../store";
 import { setData } from "../store/form";
-import { constFlatParams, constFlatTypes, constOfferTypeItems, constOfficesTypes, constSuburbanTypes } from "../store/form/consts";
+import { constFlatParams, constFlatTypes, constOfferTypeItems, constOfficesTypes, constSuburbanTypes, constHeatingTypes } from "../store/form/consts";
 import { parseCian } from "../store/parse/async-actions";
 import { constRegionItems } from "../store/form/constsRegions";
 // Типы
@@ -97,6 +97,20 @@ export const Sidebar = ({width}: Props) => {
                 onChange={(field, value) => dispatch(setData({[field]: value}))}
                 first_object={{"key": null, "text": "Любой"}}
             />
+        }
+
+        {data.offer_type === 'suburban' &&
+            <SelectBase
+                items={constHeatingTypes}
+                item_id={"id"}
+                item_desc={"desc"}
+                label = "Тип отопления"
+                name = "heating_type"
+                value = {data["heating_type"] || null}
+                onChange = {(field,value) => dispatch(setData({[field]: value}))}
+                first_object={{"key": null, "text": "Любой"}}
+            />
+
         }
         <Button 
             variant={"outlined"} 
