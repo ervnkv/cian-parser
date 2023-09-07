@@ -1,13 +1,14 @@
 // UI
 import { Button, Link, Stack } from "@mui/material";
 // Компоненты
-import SelectBase from "../components/low-level/selectBase";
+import { Region } from "./components/region";
 // Redux-toolkit
-import { useAppDispatch, useAppSelector } from "../store";
-import { setData } from "../store/form";
-import { constFlatParams, constFlatTypes, constHeatingTypes, constOfferTypeItems, constOfficesTypes, constSuburbanTypes } from "../store/form/consts";
-import { constRegionItems } from "../store/form/constsRegions";
-import { parseCian } from "../store/parse/async-actions";
+import { useAppDispatch, useAppSelector } from "../../store";
+
+import { parseCian } from "../../store/parse/async-actions";
+import { Category } from "./components/category";
+import { FlatCondition } from "./components/flatCondition";
+import { FlatRoom } from "./components/flatRoom";
 // Типы
 
 
@@ -18,7 +19,7 @@ type Props = {
 export const Sidebar = ({width}: Props) => {
   const dispatch = useAppDispatch()
   
-  const {data, urlCian} = useAppSelector(state => state.form)
+  const {data, url} = useAppSelector(state => state.form)
 
   return (
     <Stack 
@@ -31,38 +32,14 @@ export const Sidebar = ({width}: Props) => {
             p:"1rem"
         }}
     >
-        <SelectBase
-            items={constRegionItems}
-            item_id={"id"}
-            item_desc={"fullName"}
-            label="Регион"
-            name="region"
-            value={String(data.region) || null}
-            onChange={(field, value) => dispatch(setData({[field]: Number(value)}))}
-        />
-        <SelectBase
-            items={constOfferTypeItems}
-            item_id={"id"}
-            item_desc={"desc"}
-            label="Категория"
-            name="offer_type"
-            value={data.offer_type || null}
-            onChange={(field, value) => dispatch(setData({[field]: value}))}
-        />
+        <Region />
+        <Category />
+        <FlatCondition />
+        <FlatRoom />
+        {/* 
+
         {data.offer_type === "flat" && 
-            <SelectBase
-                items={constFlatTypes}
-                item_id={"id"}
-                item_desc={"desc"}
-                label="Состояние"
-                name="object_type[0]"
-                value={data["object_type[0]"] || null}
-                onChange={(field, value) => dispatch(setData({[field]: value}))}
-                first_object={{"key": null, "text": "Любое"}}
-            />
-        }
-        {data.offer_type === "flat" && 
-            <SelectBase
+            <SelectSingle
                 items={constFlatParams}
                 item_id={"id"}
                 item_desc={"desc"}
@@ -70,11 +47,11 @@ export const Sidebar = ({width}: Props) => {
                 name="room"
                 value={data.room || null}
                 onChange={(field, value) => dispatch(setData({[field]: value}))}
-                first_object={{"key": null, "text": "Любой"}}
+                first_object={{id: null, desc: "Любой"}}
             />
         }
         {data.offer_type === "suburban" && 
-            <SelectBase
+            <SelectSingle
                 items={constSuburbanTypes}
                 item_id={"id"}
                 item_desc={"desc"}
@@ -82,12 +59,12 @@ export const Sidebar = ({width}: Props) => {
                 name="object_type[0]"
                 value={data["object_type[0]"] || null}
                 onChange={(field, value) => dispatch(setData({[field]: value}))}
-                first_object={{"key": null, "text": "Любой"}}
+                first_object={{id: null, desc: "Любой"}}
             />
         }
 
         {data.offer_type === "offices" && 
-            <SelectBase
+            <SelectSingle
                 items={constOfficesTypes}
                 item_id={"id"}
                 item_desc={"desc"}
@@ -95,12 +72,13 @@ export const Sidebar = ({width}: Props) => {
                 name="office_type[0]"
                 value={data["office_type[0]"] || null}
                 onChange={(field, value) => dispatch(setData({[field]: value}))}
-                first_object={{"key": null, "text": "Любой"}}
+                
+                first_object={{id: null, desc: "Любой"}}
             />
         }
 
         {data.offer_type === 'suburban' &&
-            <SelectBase
+            <SelectSingle
                 items={constHeatingTypes}
                 item_id={"id"}
                 item_desc={"desc"}
@@ -108,24 +86,24 @@ export const Sidebar = ({width}: Props) => {
                 name = "heating_type[0]"
                 value = {data["heating_type[0]"] || null}
                 onChange = {(field,value) => dispatch(setData({[field]: value}))}
-                first_object={{"key": null, "text": "Любой"}}
+                first_object={{id: null, desc: "Любой"}}
             />
 
-        }
+        } */}
         
       
         <Button 
             variant={"outlined"} 
-            disabled={!urlCian}
-            onClick={urlCian ? () => dispatch(parseCian(urlCian)) : undefined}
+            disabled={!url}
+            onClick={url ? () => dispatch(parseCian(url)) : undefined}
         >Поиск</Button>
 
         <Link 
             variant="caption" 
             sx={{wordWrap: "break-word"}}
-            href={urlCian}
+            href={url}
         >
-            {urlCian}
+            {url}
         </Link>
     </Stack>
   )

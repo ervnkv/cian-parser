@@ -3,7 +3,7 @@ import { Box, Button, Card, CardContent, Stack, Typography } from "@mui/material
 // Компоненты
 import Carousel from "react-material-ui-carousel";
 // Типы
-import { CianParseItem } from "../../store/parse/types";
+import { CianParseItem } from "../../../store/parse/types";
 
 
 type Props = {

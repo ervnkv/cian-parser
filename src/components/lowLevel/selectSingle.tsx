@@ -11,23 +11,21 @@ import {
 interface Props<T> {
     label: string
     value: string | null
-    name: keyof T | string
     items: T[]
     item_id: keyof T | ((item: T) => any)
     item_desc: keyof T| ((item: T) => any)
-    onChange: (field: string, value: string | null) => void
+    onChange: (value: string | null) => void
     disabled?: boolean
     first_object?: {
-        key: string | null,
-        text: string
+        id: string | null,
+        desc: string
     }
     sx?: SxProps
 }
 
-const SelectBase = <T,>({
+export const SelectSingle = <T,>({
     label,
     value,
-    name,
     onChange,
     items,
     item_id,
@@ -37,11 +35,11 @@ const SelectBase = <T,>({
     sx
 }: Props<T>) => {
 
-    const empty_id = first_object?.key || ''
-    const empty_desc = first_object?.text || "Не выбрано"
+    const empty_id = first_object?.id || ''
+    const empty_desc = first_object?.desc || "Не выбрано"
 
     const handleChange = (event: SelectChangeEvent<string>) => {
-        onChange(String(name), event.target.value)
+        onChange(event.target.value)
     }
 
     return (
@@ -51,7 +49,6 @@ const SelectBase = <T,>({
                 <Select
                     disabled={disabled || items.length === 0}
                     value={value || empty_id}
-                    name={String(name)}
                     label={label}
                     onChange={handleChange}
                     variant="outlined"
@@ -71,5 +68,3 @@ const SelectBase = <T,>({
         </Stack>
     )
 }
-
-export default SelectBase

@@ -1,9 +1,9 @@
 // UI
 import { Alert, Box, Card, CardContent, CircularProgress, Stack, Typography } from "@mui/material";
 // Компоненты
-import { MainCard } from "./main-components/mainCard";
+import { MainCard } from "./components/mainCard";
 // Redux-toolkit
-import { useAppSelector } from "../store";
+import { useAppSelector } from "../../store";
 
 
 type Props = {
