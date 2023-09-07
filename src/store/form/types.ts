@@ -35,8 +35,13 @@ export type RegionItem = {
         }
     }
 }
+
 // Параметры недвижимости
-type Realty = OfferTypeFlat | OfferTypeSuburban | OfferTypeOffices | HeatingTypesSuburban 
+
+type Realty = OfferTypeFlat | OfferTypeSuburban | OfferTypeOffices | HeatingTypes
+
+
+
 export type OfferTypeFlat = {
     "offer_type"?: "flat"
     "object_type[0]"?: Value1_2
@@ -45,36 +50,47 @@ export type OfferTypeFlat = {
 export type OfferTypeSuburban = {
     "offer_type"?: "suburban"
     "object_type[0]"?: Value1_4
+    "heating_type[0]"?: Value1_6
 }
 export type OfferTypeOffices = {
     "offer_type"?: "offices"
     "office_type[0]"?: Value1_12
 }
-export type HeatingTypesSuburban = {
+
+export type HeatingTypes = {
     "offer_type"?: "suburban"
-    "heating_type"?: Value1_6
+    "heating_type[0]"?: Value1_6
 }
 
 
 
 
+
+
+
+// Значения
 
 type Value1_2 = "1" | "2"
 type Value1_4 = "1" | "2" | "3" | "4"
 type Value1_12 = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12"
 type Value1_6 = "1" | "2" | "3" | "4" | "5" | "6" | "6300" | "6301" | "6302"
 
-// Параметры фильтров
+
+// Неиспользуемые фильтры (пока)
+// Цена
 type Price = {
     currency?: 2
     minprice?: number
     maxprice?: number
 }
+// Площадь
 type Area = {
     minarea?: number
     maxarea?: number
 }
+// Координаты (надо удалить)
 type Coordinates = {
     lat?: number
     lng?: number
 }
+

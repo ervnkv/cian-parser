@@ -6,7 +6,7 @@ const parser = new DOMParser();
 
 export const parseCian = createAsyncThunk("parse/cian",
     async (url: string): Promise<CianParseItem[]> => {
-      const response = await axios.get("https://fuck-cors.vercel.app/api", {data:{"URL": url}})
+      const response = await axios.post("https://fuck-cors.vercel.app/api", {data:{"URL": url}})
       const responseDocument = parser.parseFromString(response.data, 'text/html')
       const scriptObjects = [...responseDocument.getElementsByTagName('script')]
 

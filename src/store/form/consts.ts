@@ -1,4 +1,8 @@
-import { Form, HeatingTypesSuburban, OfferTypeFlat, OfferTypeOffices, OfferTypeSuburban } from "./types";
+
+import { Form, OfferTypeFlat, OfferTypeOffices, OfferTypeSuburban } from "./types";
+
+
+
 
 
 
@@ -109,7 +113,7 @@ export const constSuburbanTypes: SuburbanTypes[] = [
 ]
 
 type HeatingTypes = {
-    id: HeatingTypesSuburban["heating_type"]
+    id: OfferTypeSuburban["heating_type[0]"]
     desc: string
 }
 export const constHeatingTypes: HeatingTypes[] = [
