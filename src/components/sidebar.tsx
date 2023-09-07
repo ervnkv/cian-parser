@@ -105,8 +105,8 @@ export const Sidebar = ({width}: Props) => {
                 item_id={"id"}
                 item_desc={"desc"}
                 label = "Тип отопления"
-                name = "heating_type"
-                value = {data["heating_type"] || null}
+                name = "heating_type[0]"
+                value = {data["heating_type[0]"] || null}
                 onChange = {(field,value) => dispatch(setData({[field]: value}))}
                 first_object={{"key": null, "text": "Любой"}}
             />
