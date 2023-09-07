@@ -38,7 +38,7 @@ export type RegionItem = {
 
 // Параметры недвижимости
 
-type Realty = OfferTypeFlat | OfferTypeSuburban | OfferTypeOffices | HeatingTypes
+type Realty = OfferTypeFlat | OfferTypeSuburban | OfferTypeOffices | ComunicationsTypes
 
 
 
@@ -57,11 +57,10 @@ export type OfferTypeOffices = {
     "office_type[0]"?: Value1_12
 }
 
-export type HeatingTypes = {
+export type ComunicationsTypes = {
     "offer_type"?: "suburban"
-    "heating_type[0]"?: Value1_6
+    "comunications"?: "gas" | "water" | "electricity" | "drainage"
 }
-
 
 
 
