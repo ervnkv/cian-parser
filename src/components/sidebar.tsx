@@ -5,7 +5,7 @@ import SelectBase from "../components/low-level/selectBase";
 // Redux-toolkit
 import { useAppDispatch, useAppSelector } from "../store";
 import { setData } from "../store/form";
-import { constFlatParams, constFlatTypes, constOfferTypeItems, constOfficesTypes, constSuburbanTypes, constHeatingTypes } from "../store/form/consts";
+import { constFlatParams, constFlatTypes, constOfferTypeItems, constOfficesTypes, constSuburbanTypes, constHeatingTypes, constComunicateGas } from "../store/form/consts";
 import { parseCian } from "../store/parse/async-actions";
 import { constRegionItems } from "../store/form/constsRegions";
 // Типы
@@ -112,6 +112,8 @@ export const Sidebar = ({width}: Props) => {
             />
 
         }
+        
+      
         <Button 
             variant={"outlined"} 
             disabled={!urlCian}
