@@ -1,9 +1,9 @@
 // UI
 import { Alert, Box, Card, CardContent, CircularProgress, Stack, Typography } from "@mui/material";
 // Компоненты
-import { MainCard } from "./main-components/mainCard";
+import { MainCard } from "./components/mainCard";
 // Redux-toolkit
-import { useAppSelector } from "../store";
+import { useAppSelector } from "../../store";
 
 
 type Props = {
@@ -11,6 +11,7 @@ type Props = {
 }
 export const Main = ({width}: Props) => {
   const {items, status, statusText} = useAppSelector(state => state.parse)
+  const {selectedItems} = useAppSelector(state => state.export)
 
   return (
     <Stack 
@@ -31,7 +32,7 @@ export const Main = ({width}: Props) => {
           overflowX: "hidden",
           overflowY: "scroll",
         }}>
-          {items.map(item => <MainCard key={item.id} item={item}/>)}
+          {items.map(item => <MainCard key={item.id} item={item} selected={selectedItems.includes(item.id)}/>)}
         </Box>
       }
 
