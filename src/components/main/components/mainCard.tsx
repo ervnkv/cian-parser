@@ -1,7 +1,7 @@
 // UI
 import { Box, Button, Card, CardContent, Stack, Typography } from "@mui/material";
 // Компоненты
-import Carousel from "react-material-ui-carousel";
+import { Carousel } from "./carousel";
 // Типы
 import { CianParseItem } from "../../../store/parse/types";
 
@@ -13,7 +13,7 @@ export const MainCard = ({item}: Props) => {
   console.dir(item)
 
   const Currency = (number: number) => new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(number)
-
+  const urls = item?.photos.map(obj => obj.fullUrl)
   return (
     <Card variant="outlined" sx={{height: "20rem", background: "hsl(0,0%,15%)"}}>
         <CardContent>
@@ -25,7 +25,8 @@ export const MainCard = ({item}: Props) => {
               width: "100%",
             }}
           >
-            <Carousel 
+            <Carousel urls={urls || []}/>
+            {/* <Carousel 
               autoPlay={false} 
               navButtonsAlwaysVisible
             >
@@ -40,7 +41,7 @@ export const MainCard = ({item}: Props) => {
                   src={obj.fullUrl}
                 />
               ))}
-            </Carousel>
+            </Carousel> */}
             
             <Box sx={{
               display: "grid",
