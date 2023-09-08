@@ -1,27 +1,9 @@
 // Компоненты
 import { SelectSingle } from "../../../lowLevel/selectSingle";
+import { items } from "./items";
 // Redux-toolkit
 import { useAppDispatch, useAppSelector } from "../../../../store";
 import { setData } from "../../../../store/form";
-// Типы
-export type OfferTypeItem = {
-  id: "flat" | "suburban" | "offices"
-  desc: string
-}
-const offerTypeItems: OfferTypeItem[] = [
-  {
-      id: "flat",
-      desc: "Квартиры"
-  },
-  {
-      id: "suburban",
-      desc: "Загородное"
-  },
-  {
-      id: "offices",
-      desc: "Коммерческое"
-  },
-]
 
 type Props = {}
 
@@ -34,7 +16,7 @@ export const Category = ({}: Props) => {
     <>
     <SelectSingle
         label="Категория"
-        items={offerTypeItems}
+        items={items}
         item_id={"id"}
         item_desc={"desc"}
         value={offer_type?.value || ""}
@@ -42,9 +24,13 @@ export const Category = ({}: Props) => {
           dispatch(setData({
             offer_type: {
               value_type: "single",
-              value: String(value)
+              value: value || ""
             },
-            object_type: undefined
+            // Обнуление параметров при изменении категории
+            object_type: undefined,
+            room: undefined,
+            office_type: undefined,
+            heating_type: undefined,
           }))
         }}
     />

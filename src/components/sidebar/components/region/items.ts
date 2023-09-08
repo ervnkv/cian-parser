@@ -1,6 +1,6 @@
-import { RegionItem } from ".";
+import { Item } from "./types";
 
-export const regionItems: RegionItem[] = [
+export const items: Item[] = [
     {
         id: 1,
         fullName: 'Москва',

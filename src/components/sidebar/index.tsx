@@ -2,15 +2,15 @@
 import { Button, Link, Stack } from "@mui/material";
 // Компоненты
 import { Region } from "./components/region";
+import { Category } from "./components/category";
+import { FlatType } from "./components/flatType";
+import { FlatRoom } from "./components/flatRoom";
+import { SuburbanHeating } from "./components/suburbanHeating";
+import { SuburbanType } from "./components/suburbanType";
+import { OfficeType } from "./components/officeType";
 // Redux-toolkit
 import { useAppDispatch, useAppSelector } from "../../store";
-
 import { parseCian } from "../../store/parse/async-actions";
-import { Category } from "./components/category";
-import { FlatCondition } from "./components/flatCondition";
-import { FlatRoom } from "./components/flatRoom";
-// Типы
-
 
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 export const Sidebar = ({width}: Props) => {
   const dispatch = useAppDispatch()
   
-  const {data, url} = useAppSelector(state => state.form)
+  const {url} = useAppSelector(state => state.form)
 
   return (
     <Stack 
@@ -34,75 +34,17 @@ export const Sidebar = ({width}: Props) => {
     >
         <Region />
         <Category />
-        <FlatCondition />
+        <FlatType />
         <FlatRoom />
-        {/* 
-
-        {data.offer_type === "flat" && 
-            <SelectSingle
-                items={constFlatParams}
-                item_id={"id"}
-                item_desc={"desc"}
-                label="Тип квартиры"
-                name="room"
-                value={data.room || null}
-                onChange={(field, value) => dispatch(setData({[field]: value}))}
-                first_object={{id: null, desc: "Любой"}}
-            />
-        }
-        {data.offer_type === "suburban" && 
-            <SelectSingle
-                items={constSuburbanTypes}
-                item_id={"id"}
-                item_desc={"desc"}
-                label="Тип загородного"
-                name="object_type[0]"
-                value={data["object_type[0]"] || null}
-                onChange={(field, value) => dispatch(setData({[field]: value}))}
-                first_object={{id: null, desc: "Любой"}}
-            />
-        }
-
-        {data.offer_type === "offices" && 
-            <SelectSingle
-                items={constOfficesTypes}
-                item_id={"id"}
-                item_desc={"desc"}
-                label="Тип офиса"
-                name="office_type[0]"
-                value={data["office_type[0]"] || null}
-                onChange={(field, value) => dispatch(setData({[field]: value}))}
-                
-                first_object={{id: null, desc: "Любой"}}
-            />
-        }
-
-        {data.offer_type === 'suburban' &&
-            <SelectSingle
-                items={constHeatingTypes}
-                item_id={"id"}
-                item_desc={"desc"}
-                label = "Тип отопления"
-                name = "heating_type[0]"
-                value = {data["heating_type[0]"] || null}
-                onChange = {(field,value) => dispatch(setData({[field]: value}))}
-                first_object={{id: null, desc: "Любой"}}
-            />
-
-        } */}
-        
+        <SuburbanType />
+        <SuburbanHeating />
+        <OfficeType />
       
-        <Button 
-            variant={"outlined"} 
-            disabled={!url}
-            onClick={url ? () => dispatch(parseCian(url)) : undefined}
-        >Поиск</Button>
+        <Button variant={"outlined"} disabled={!url} onClick={url ? () => dispatch(parseCian(url)) : undefined}>
+            Поиск
+        </Button>
 
-        <Link 
-            variant="caption" 
-            sx={{wordWrap: "break-word"}}
-            href={url}
-        >
+        <Link variant="caption" sx={{wordWrap: "break-word"}} href={url}>
             {url}
         </Link>
     </Stack>

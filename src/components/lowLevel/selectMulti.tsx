@@ -65,7 +65,7 @@ export const SelectMulti = <T,>({
                                 const item = items.find(item => (typeof(item_id) === "function" ? item_id(item) : item[item_id]) === value)
                                 const text = item && (typeof(item_desc) === "function" ? item_desc(item) : item[item_desc])
                                 return (
-                                <Chip key={value} label={text} />
+                                <Chip key={value} label={text} sx={{p:0, mt: "0.2rem", borderRadius: 0, height: "1.5rem"}}/>
                                 )
                                 })}
                             </Box>

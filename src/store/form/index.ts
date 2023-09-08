@@ -51,17 +51,23 @@ const GetUrl = (data: Form) => {
         if (!obj) return
         const type = obj.value_type
         const encodedKey = encodeURIComponent(key)
-        if (type === "single") {
-            const encodedValue = encodeURIComponent(obj.value)
-            return `${encodedKey}=${encodedValue}`
-        } else if (type === "multi") {
-            return obj.value.map(value => {
-                const encodedValue = encodeURIComponent(value)
+        switch (type) {
+            case "single":
+                const encodedValue = encodeURIComponent(obj.value)
                 return `${encodedKey}=${encodedValue}`
-            }).join("&")
-
+            case "multi":
+                return obj.value.map((value, index) => {
+                    const encodedValue = encodeURIComponent(value)
+                    return `${encodedKey}[${index}]=${encodedValue}`
+                }).join("&")
+            case "multikey":
+                return obj.value.map((value, index) => {
+                    const encodedValue = encodeURIComponent(value)
+                    return `${encodedValue}=1`
+                }).join("&")
         }
-    }).join("&")
+
+    }).filter(obj => !!obj).join("&")
     
     return baseURL+params
 }

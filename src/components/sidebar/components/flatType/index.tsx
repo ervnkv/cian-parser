@@ -5,26 +5,25 @@ import { items } from "./items"
 import { useAppDispatch, useAppSelector } from "../../../../store"
 import { setData } from "../../../../store/form"
 
-
 type Props = {}
 
-export const FlatRoom = ({}: Props) => {
+export const FlatType = ({}: Props) => {
   const dispatch = useAppDispatch()
   
-  const {room, offer_type} = useAppSelector(state => state.form.data)
+  const {object_type, offer_type} = useAppSelector(state => state.form.data)
 
   return (
     <>
     {offer_type?.value === "flat" && 
     <SelectMulti
-        label="Комнаты"
+        label="Тип"
         items={items}
         item_id={"id"}
         item_desc={"desc"}
-        value={room?.value || []}
+        value={object_type?.value || []}
         onChange={value => dispatch(setData({
-          room: {
-            value_type: "multikey",
+          object_type: {
+            value_type: "multi",
             value: value
           }
         }))}
