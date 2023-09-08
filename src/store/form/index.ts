@@ -65,6 +65,12 @@ const GetUrl = (data: Form) => {
                     const encodedValue = encodeURIComponent(value)
                     return `${encodedValue}=1`
                 }).join("&")
+            case "range":
+                const encodedKeyFrom = encodeURIComponent( key.includes("_") ? "min_" + key : "min" + key )
+                const encodedKeyTo = encodeURIComponent(key.includes("_") ? "max_" + key : "max" + key )
+                const from = obj.value.from ? encodedKeyFrom + "=" + obj.value.from : null
+                const to = obj.value.to ? encodedKeyTo + "=" + obj.value.to : null
+                return [from,to].filter(obj => !!obj).join("&")
         }
 
     }).filter(obj => !!obj).join("&")

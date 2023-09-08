@@ -11,6 +11,7 @@ import { OfficeType } from "./components/officeType";
 // Redux-toolkit
 import { useAppDispatch, useAppSelector } from "../../store";
 import { parseCian } from "../../store/parse/async-actions";
+import { Price } from "./components/price";
 
 
 type Props = {
@@ -39,6 +40,7 @@ export const Sidebar = ({width}: Props) => {
         <SuburbanType />
         <SuburbanHeating />
         <OfficeType />
+        <Price/>
       
         <Button variant={"outlined"} disabled={!url} onClick={url ? () => dispatch(parseCian(url)) : undefined}>
             Поиск

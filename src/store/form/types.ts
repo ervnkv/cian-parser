@@ -7,6 +7,7 @@ export type Form = {
     room?: FormParamMultiKey
     office_type?: FormParamMulti
     heating_type?: FormParamMulti
+    price?: FormParamRange
 }
 
 // Параметр с единственным значением. deal_type: {value: 2} => deal_type=2
@@ -27,7 +28,7 @@ type FormParamMultiKey = {
 type FormParamRange = {
     value_type: "range", 
     value: {
-        from: number, 
-        to: number,
+        from?: number, 
+        to?: number,
     }
 }
