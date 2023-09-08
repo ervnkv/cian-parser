@@ -26,22 +26,6 @@ export const MainCard = ({item}: Props) => {
             }}
           >
             <Carousel urls={urls || []}/>
-            {/* <Carousel 
-              autoPlay={false} 
-              navButtonsAlwaysVisible
-            >
-              {item.photos.map(obj => (
-                <Box
-                  component="img"
-                  sx={{
-                    width: "100%",
-                    mx: "auto",
-                    overflow: "clip"
-                  }}
-                  src={obj.fullUrl}
-                />
-              ))}
-            </Carousel> */}
             
             <Box sx={{
               display: "grid",
