@@ -1,18 +1,48 @@
-export type Form = {
-    deal_type: FormParamSingle
-    engine_version: FormParamSingle
-    region: FormParamSingle
-    offer_type?: FormParamSingle
-    object_type?: FormParamMulti
-    room?: FormParamMultiKey
-    office_type?: FormParamMulti
-    heating_type?: FormParamMulti
-    price?: FormParamRange
+
+export type Form = General & Realty & Price & Area & Coordinates & Region
+
+// Основные параметры
+type General = {
+    deal_type: "sale"
+    engine_version: 2
+}
+// Регион
+type Region = {
+    region: number
+}
+export type RegionItem = {
+    id: number,
+    fullName: string,
+    displayName: string,
+    name: string,
+    namePrepositional: string,
+    hasMetro: boolean,
+    hasHighway: boolean,
+    hasDistricts: boolean,
+    hasRegionalDistricts: boolean,
+    parentId: number | null,
+    mainTownId: number | null,
+    lat: number,
+    lng: number,
+    boundedBy: {
+        lowerCorner: {
+            lat: number,
+            lng: number
+        },
+        upperCorner: {
+            lat: number,
+            lng: number
+        }
+    }
 }
 
 // Параметры недвижимости
 
-type Realty = OfferTypeFlat | OfferTypeSuburban | OfferTypeOffices
+
+type Realty = OfferTypeFlat | OfferTypeSuburban | OfferTypeOffices | ComunicationsTypes
+
+
+
 
 
 
@@ -21,16 +51,23 @@ export type OfferTypeFlat = {
     "object_type[0]"?: Value1_2
     "room"?: "room0" | "room1" | "room2" | "room3" | "room4" | "room5" | "room6" | "room7" | "room8" | "room9"
 }
-// Параметр с массивом значений. object_type: {value: [2,3]} => object_type=2&object_type=3
-type FormParamMulti = {
-    value_type: "multi"
-    value: string[]
+export type OfferTypeSuburban = {
+    "offer_type"?: "suburban"
+    "object_type[0]"?: Value1_4
+    "heating_type[0]"?: Value1_6
 }
-// Параметр с массивом ключей. room: {value: [room0,room1]} => room0=1&room1=1
-type FormParamMultiKey = {
-    value_type: "multikey"
-    value: string[]
+export type OfferTypeOffices = {
+    "offer_type"?: "offices"
+    "office_type[0]"?: Value1_12
 }
+
+
+export type ComunicationsTypes = {
+    "offer_type"?: "suburban"
+    "comunications"?: "gas" | "water" | "electricity" | "drainage"
+}
+
+
 
 
 
@@ -59,3 +96,4 @@ type Coordinates = {
     lat?: number
     lng?: number
 }
+

@@ -3,13 +3,11 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 
 import formSlice from "./form";
 import parseSlice from "./parse";
-import exportSlice from "./export"
 
 export const store = configureStore({
     reducer: {
         form: formSlice,
         parse: parseSlice,
-        export: exportSlice,
     },
 })
 
