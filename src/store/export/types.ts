@@ -7,6 +7,7 @@ export type Form = {
     room?: FormParamMultiKey
     office_type?: FormParamMulti
     heating_type?: FormParamMulti
+    communicationtype?: FormParamMultiKey
     price?: FormParamRange
 }
 

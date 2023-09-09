@@ -6,6 +6,7 @@ import { Category } from "./components/category";
 import { FlatType } from "./components/flatType";
 import { FlatRoom } from "./components/flatRoom";
 import { SuburbanHeating } from "./components/suburbanHeating";
+import { SuburbanCommunication } from "./components/CommunicationType";
 import { SuburbanType } from "./components/suburbanType";
 import { OfficeType }  from "./components/officeType";
 // Redux-toolkit
@@ -39,6 +40,7 @@ export const Sidebar = ({width}: Props) => {
         <FlatRoom />
         <SuburbanType />
         <SuburbanHeating />
+        <SuburbanCommunication />
         <OfficeType />
         <Price/>
       

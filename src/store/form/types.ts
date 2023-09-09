@@ -7,6 +7,7 @@ export type Form = {
     room?: FormParamMultiKey
     office_type?: FormParamMulti
     heating_type?: FormParamMulti
+    communicationtype?: FormParamMultiKey
     price?: FormParamRange
 }
 
@@ -25,6 +26,7 @@ type FormParamMultiKey = {
     value_type: "multikey"
     value: string[]
 }
+
 type FormParamRange = {
     value_type: "range", 
     value: {
