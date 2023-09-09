@@ -29,7 +29,13 @@ export const MainCard = ({item, selected=false}: Props) => {
         outlineOffset: "-0.2rem"
       }}}
     >
-      <Checkbox sx={{position: "absolute", right: 0}} onClick={() => dispatch(setSelection(item.id))}></Checkbox>
+      <Checkbox 
+        sx={{position: "absolute", right: 0}} 
+        onClick={() => {
+          dispatch(setSelection(item))
+        }}
+      />
+
       <CardContent>
         <Box 
           sx={{

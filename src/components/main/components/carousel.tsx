@@ -1,10 +1,8 @@
+// React
+import { useState } from "react"
 // UI
-import { Box, Button, Card, CardContent, MobileStepper, Stack, Typography } from "@mui/material";
-// Компоненты
-// Типы
-import { CianParseItem } from "../../../store/parse/types";
-import { ReactNode, useState } from "react";
-import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
+import { Box, Button, MobileStepper, Typography } from "@mui/material"
+import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material"
 
 
 type Props = {

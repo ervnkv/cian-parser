@@ -1,5 +1,7 @@
 // UI
-import { Button, Link, Stack } from "@mui/material";
+import { Link, Stack } from "@mui/material";
+// Redux-toolkit
+import { useAppDispatch, useAppSelector } from "../../store";
 // Компоненты
 import { Region } from "./components/region";
 import { Category } from "./components/category";
@@ -8,10 +10,9 @@ import { FlatRoom } from "./components/flatRoom";
 import { SuburbanHeating } from "./components/suburbanHeating";
 import { SuburbanType } from "./components/suburbanType";
 import { OfficeType }  from "./components/officeType";
-// Redux-toolkit
-import { useAppDispatch, useAppSelector } from "../../store";
-import { parseCian } from "../../store/parse/async-actions";
 import { Price } from "./components/price";
+import { ButtonSearch } from "./components/buttonSearch";
+import { ButtonExport } from "./components/buttonExport";
 
 
 type Props = {
@@ -42,13 +43,13 @@ export const Sidebar = ({width}: Props) => {
         <OfficeType />
         <Price/>
       
-        <Button variant={"outlined"} disabled={!url} onClick={url ? () => dispatch(parseCian(url)) : undefined}>
-            Поиск
-        </Button>
+        <ButtonSearch />
 
         <Link variant="caption" sx={{wordWrap: "break-word"}} href={url}>
             {url}
         </Link>
+
+        <ButtonExport />
     </Stack>
   )
 }

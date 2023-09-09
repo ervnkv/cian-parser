@@ -18,7 +18,7 @@ export const RangeField = ({label, value_from, value_to, onChange, endAdornment,
     <Stack direction={"row"} gap={2} sx={sx}>
     <TextField
         label={label + " от"}
-        value={value_from || null}
+        value={value_from || ""}
         onChange={e => onChange({
           from: typeof parseFloat(e.target.value) === "number" ? parseFloat(e.target.value) : undefined,
           to: value_to || undefined
@@ -30,7 +30,7 @@ export const RangeField = ({label, value_from, value_to, onChange, endAdornment,
     />
     <TextField
       label={label + " до"}
-      value={value_to || null}
+      value={value_to || ""}
       onChange={e => onChange({
         from: value_from || undefined,
         to: typeof parseFloat(e.target.value) === "number" ? parseFloat(e.target.value) : undefined
