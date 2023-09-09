@@ -32,7 +32,7 @@ export const Main = ({width}: Props) => {
           overflowX: "hidden",
           overflowY: "scroll",
         }}>
-          {items.map(item => <MainCard key={item.id} item={item} selected={selectedItems.includes(item.id)}/>)}
+          {items.map(item => <MainCard key={item.id} item={item} selected={!!selectedItems.find(obj => obj.id === item.id)}/>)}
         </Box>
       }
 
