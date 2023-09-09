@@ -17,7 +17,7 @@ type FormParamSingle = {
 }
 // Параметр с массивом значений. object_type: {value: [2,3]} => object_type=2&object_type=3
 type FormParamMulti = {
-    value_type:  "multi"
+    value_type: "multi"
     value: string[]
 }
 // Параметр с массивом ключей. room: {value: [room0,room1]} => room0=1&room1=1
