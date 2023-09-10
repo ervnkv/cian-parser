@@ -7,18 +7,18 @@ import { setData } from "../../../../store/form"
 
 type Props = {}
 
-export const Square = ({}: Props) => {
+export const Area = ({}: Props) => {
   const dispatch = useAppDispatch()
   
-  const {square} = useAppSelector(state => state.form.data)
+  const {area} = useAppSelector(state => state.form.data)
 
   return (
     <RangeField 
       label="Площадь"
-      value_from={square?.value.from}
-      value_to={square?.value.to}
+      value_from={area?.value.from}
+      value_to={area?.value.to}
       onChange={value => dispatch(setData({
-            square: {
+            area: {
               value_type: "range",
               value: value
             }

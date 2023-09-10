@@ -8,7 +8,7 @@ export type Form = {
     office_type?: FormParamMulti
     heating_type?: FormParamMulti
     communicationtype?: FormParamMultiKey
-    square?: FormParamRange
+    area?: FormParamRange
     price?: FormParamRange
 }
 

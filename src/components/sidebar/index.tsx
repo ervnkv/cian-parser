@@ -12,7 +12,7 @@ import { SuburbanCommunication } from "./components/CommunicationType";
 import { SuburbanType } from "./components/suburbanType";
 import { OfficeType }  from "./components/officeType";
 import { Price } from "./components/price";
-import { Square } from "./components/square";
+import { Area } from "./components/square";
 import { ButtonSearch } from "./components/buttonSearch";
 import { ButtonExport } from "./components/buttonExport";
 
@@ -45,7 +45,7 @@ export const Sidebar = ({width}: Props) => {
         <SuburbanCommunication />
         <OfficeType />
         <Price/>
-        <Square/>
+        <Area/>
       
         <ButtonSearch />
 
