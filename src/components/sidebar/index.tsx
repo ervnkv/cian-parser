@@ -12,7 +12,7 @@ import { SuburbanCommunication } from "./components/CommunicationType";
 import { SuburbanType } from "./components/suburbanType";
 import { OfficeType }  from "./components/officeType";
 import { Price } from "./components/price";
-import { Area } from "./components/square";
+import { Area } from "./components/area";
 import { ButtonSearch } from "./components/buttonSearch";
 import { ButtonExport } from "./components/buttonExport";
 
