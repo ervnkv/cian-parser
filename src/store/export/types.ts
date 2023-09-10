@@ -8,8 +8,8 @@ export type Form = {
     office_type?: FormParamMulti
     heating_type?: FormParamMulti
     communicationtype?: FormParamMultiKey
-    price?: FormParamRange
     square?: FormParamRange
+    price?: FormParamRange
 }
 
 // Параметр с единственным значением. deal_type: {value: 2} => deal_type=2
