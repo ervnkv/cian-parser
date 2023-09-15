@@ -4,7 +4,8 @@ import { Form } from "./types";
 const dataDefault: Form = {
     deal_type: {
         value_type: "single",
-        value: "sale"
+        value: "sale" || "rent"
+        
     },
     engine_version: {
         value_type: "single",
