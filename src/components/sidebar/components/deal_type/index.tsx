@@ -22,7 +22,7 @@ export const DealType = ({}: Props) => {
         item_desc={"desc"}
         value={region.value}
         onChange={value => dispatch(setData({
-          region: {
+          deal_type: {
             value_type: "single",
             value: String(value)
           }
