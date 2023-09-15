@@ -10,7 +10,7 @@ type Props = {}
 export const SuburbanCommunication = ({}: Props) => {
   const dispatch = useAppDispatch()
   
-  const {communicationtype, offer_type} = useAppSelector(state => state.form.data)
+  const {communication, offer_type} = useAppSelector(state => state.form.data)
 
   return (
     <>
@@ -20,9 +20,9 @@ export const SuburbanCommunication = ({}: Props) => {
         items={items}
         item_id={"id"}
         item_desc={"desc"}
-        value={communicationtype?.value || []}
+        value={communication?.value || []}
         onChange={value => dispatch(setData({
-          communicationtype: {
+          communication: {
             value_type: "multikey",
             value: value
           }

@@ -31,6 +31,7 @@ export const Category = ({}: Props) => {
             room: undefined,
             office_type: undefined,
             heating_type: undefined,
+            communication: undefined
           }))
         }}
     />
