@@ -11,7 +11,7 @@ type Props = {}
 export const DealType = ({}: Props) => {
   const dispatch = useAppDispatch()
   
-  const {region} = useAppSelector(state => state.form.data)
+  const {deal_type} = useAppSelector(state => state.form.data)
 
   return (
     <>
@@ -20,7 +20,7 @@ export const DealType = ({}: Props) => {
         items={items}
         item_id={"id"}
         item_desc={"desc"}
-        value={region.value}
+        value={deal_type.value}
         onChange={value => dispatch(setData({
           deal_type: {
             value_type: "single",
