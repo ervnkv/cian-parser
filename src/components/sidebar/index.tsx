@@ -9,7 +9,7 @@ import { Category } from "./components/category";
 import { FlatType } from "./components/flatType";
 import { FlatRoom } from "./components/flatRoom";
 import { SuburbanHeating } from "./components/suburbanHeating";
-import { SuburbanCommunication } from "./components/CommunicationType";
+import { SuburbanCommunication } from "./components/сommunication";
 import { SuburbanType } from "./components/suburbanType";
 import { OfficeType }  from "./components/officeType";
 import { Price } from "./components/price";
@@ -30,6 +30,7 @@ export const Sidebar = ({width}: Props) => {
     <Stack 
         direction={"column"} 
         width={width || "100%"} 
+        maxWidth={width || "100%"}
         gap={5} 
         position={"relative"} 
         sx={{
@@ -51,8 +52,8 @@ export const Sidebar = ({width}: Props) => {
       
         <ButtonSearch />
 
-        <Link variant="caption" sx={{wordWrap: "break-word"}} href={url}>
-            {url}
+        <Link variant="caption" alignSelf={"center"} sx={{wordWrap: "break-word"}} href={url}>
+            Ссылка на поиск Циан
         </Link>
 
         <ButtonExport />
