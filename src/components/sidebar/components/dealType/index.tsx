@@ -25,7 +25,9 @@ export const DealType = ({}: Props) => {
           deal_type: {
             value_type: "single",
             value: String(value)
-          }
+          },
+          // Обнуление параметров при изменении типа сделки
+          object_type: undefined,
         }))}
     />
     </>

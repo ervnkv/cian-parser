@@ -10,11 +10,12 @@ type Props = {}
 export const FlatType = ({}: Props) => {
   const dispatch = useAppDispatch()
   
-  const {object_type, offer_type} = useAppSelector(state => state.form.data)
+  const {object_type, offer_type, deal_type} = useAppSelector(state => state.form.data)
 
   return (
     <>
-    {offer_type?.value === "flat" && 
+    {offer_type?.value === "flat" &&
+    deal_type?.value === "sale" &&
     <SelectMulti
         label="Тип"
         items={items}

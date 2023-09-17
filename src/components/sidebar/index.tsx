@@ -4,7 +4,7 @@ import { Link, Stack } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../store";
 // Компоненты
 import { Region } from "./components/region";
-import { DealType } from "./components/deal_type";
+import { DealType } from "./components/dealType";
 import { Category } from "./components/category";
 import { FlatType } from "./components/flatType";
 import { FlatRoom } from "./components/flatRoom";
