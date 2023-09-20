@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Form } from "./types";
+import { Item as Region } from "../../components/sidebar/components/region/types";
 
 const dataDefault: Form = {
     deal_type: {
@@ -18,7 +19,12 @@ const dataDefault: Form = {
 }
 const initialState = {
     data: dataDefault,
-    url: ""
+    url: "",
+    region: {
+        region: null as null | Region,
+        mainTown: null as null | Region,
+    }
+    
 }
 const formSlice = createSlice({
     name: 'form',
@@ -33,11 +39,19 @@ const formSlice = createSlice({
                 state.url = GetUrl(new_data)
             }
         },
+        setRegion(state, action: PayloadAction<typeof state.region>) {
+            if (action.payload === null) {
+                state.region = initialState.region
+            } else {
+                state.region = action.payload
+            }
+        },
     },
 })
 
 export const {
     setData,
+    setRegion
 } = formSlice.actions
 
 export default formSlice.reducer

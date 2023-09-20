@@ -202,7 +202,7 @@ export type CianParseItem = {
     "flatType": null,
     "coworkingOfferType": null,
     "floorNumber": null,
-    "totalArea": "238.4",
+    "totalArea": string | null,
     "areaParts": null,
     "roomsForSaleCount": null,
     "dealRentVersion": null,

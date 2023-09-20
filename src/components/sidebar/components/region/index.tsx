@@ -3,7 +3,8 @@ import { SelectSingle } from "../../../lowLevel/selectSingle"
 import { items } from "./items"
 // Redux-toolkit
 import { useAppDispatch, useAppSelector } from "../../../../store"
-import { setData } from "../../../../store/form"
+import { setData, setRegion } from "../../../../store/form"
+import { useEffect } from "react"
 
 
 type Props = {}
@@ -12,6 +13,13 @@ export const Region = ({}: Props) => {
   const dispatch = useAppDispatch()
   
   const {region} = useAppSelector(state => state.form.data)
+
+  const itemRegion = items.find(obj => obj.id === Number(region.value)) || null
+  const itemMainTown = items.find(obj => obj.id === itemRegion?.mainTownId) || null
+
+  useEffect(() => {
+    dispatch(setRegion({region: itemRegion, mainTown: itemMainTown}))
+  }, [itemRegion, itemMainTown])
 
   return (
     <>
