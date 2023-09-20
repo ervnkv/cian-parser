@@ -32,6 +32,7 @@ export const MainCard = ({item, selected=false}: Props) => {
       <Checkbox 
         sx={{position: "absolute", right: 0}} 
         onClick={() => {
+          console.log(item)
           dispatch(setSelection(item))
         }}
       />

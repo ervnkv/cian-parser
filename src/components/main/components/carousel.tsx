@@ -1,7 +1,7 @@
 // React
 import { useState } from "react"
 // UI
-import { Box, Button, MobileStepper, Typography } from "@mui/material"
+import { Box, Button, CardMedia, MobileStepper, Typography } from "@mui/material"
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material"
 
 
@@ -16,19 +16,16 @@ export const Carousel = ({urls}: Props) => {
         <>
         {count === 0 && <Typography alignSelf={"center"} textAlign={"center"}>Нет фото</Typography>}
         {count !== 0 &&
-        <Box 
+        <Box
             sx={{
                 display: "flex", 
                 justifyContent: "center", 
-                alignItems: "center", 
+                alignItems: "flex-start", 
                 width: "100%", 
                 position: "relative",
-                backgroundImage: `url(${urls[activeStep]})`,
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "top center",
-                backgroundSize: "contain"
             }}
         >
+            <Box component="img" src={urls[activeStep]} sx={{objectFit: 'cover', position: "absolute", maxWidth: "100%", maxHeight: "100%"}}/>
             <MobileStepper
                 variant="text"
                 steps={count}

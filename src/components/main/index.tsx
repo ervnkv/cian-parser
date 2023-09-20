@@ -12,7 +12,7 @@ type Props = {
 export const Main = ({width}: Props) => {
   const {items, status, statusText} = useAppSelector(state => state.parse)
   const {selectedItems} = useAppSelector(state => state.export)
-
+  
   return (
     <Stack 
       direction={"column"}
