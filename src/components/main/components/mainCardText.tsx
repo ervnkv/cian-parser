@@ -1,9 +1,9 @@
 // UI
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material"
 // Компоненты
 // Типы
-import { CianParseItem } from "../../../store/parse/types";
-import { useAppSelector } from "../../../store";
+import { CianParseItem } from "../../../store/parse/types"
+import { useAppSelector } from "../../../store"
 
 
 type Props = {
@@ -14,30 +14,38 @@ export const MainCardText = ({item, width = "100%"}: Props) => {
 
   const Currency = (number: number) => new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(number)
 
-  const {region, mainTown} = useAppSelector(state => state.form.region)
-
+  const {mainTown} = useAppSelector(state => state.form.region)
   const {lat, lng} = item.geo.coordinates
 
-  const coordinates = ` (${lat}, ${lng})`
+  const coordinates = `${lat}, ${lng}`
   const fullAddress = item.geo.address
     .filter(obj => obj.type === "location")
     .map(obj => obj.shortName)
-    .join(", ") + coordinates
+    .join(", ")
   
-  const getDistance = (lat_from?: number, lng_from?: number, lat_to?: number, lng_to?: number) => {
-    if (!lat_from || !lng_from || !lat_to || !lng_to) return null
-    return Math.sqrt(Math.pow(lat_to - lat_from, 2) + Math.pow(lng_to - lng_from, 2))
+  const getDistance = (latA?: number, longA?: number, latB?: number,  longB?: number) => {
+    if (!latA || !longA || !latB || !longB) return null
+    const toRadians = (degrees: number) => (degrees * Math.PI) / 180
+    const earthRadiusKm = 6371 // Радиус Земли в километрах
+    const dLat = toRadians(latB - latA)
+    const dLon = toRadians(longB - longA)
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRadians(latA)) * Math.cos(toRadians(latB)) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+    const distance = earthRadiusKm * c
+    return distance.toFixed(2) + " км"
   }
 
-  const distance = mainTown ? getDistance(mainTown.lat, mainTown.lng, lat, lng) : getDistance(region?.lat, region?.lng, lat, lng)
+  const distance = mainTown ? getDistance(mainTown.lat, mainTown.lng, lat, lng) : null
 
   return (
     <Stack direction={"column"} width={width} position={"relative"}>
-      <Typography variant="caption" width={"95%"}>{fullAddress}</Typography>
-      <Typography variant="caption">
-          {distance ? distance + " км?" : "-"}
-        </Typography>
-      <Stack direction={"row"} justifyContent={"space-between"}>
+      <Typography variant="body2" width={"95%"}><strong>Адрес</strong> - {fullAddress}</Typography>
+      {distance && <Typography variant="body2"><strong>Расстояние до {mainTown?.name}</strong> - {distance ? distance : "-"}</Typography>}
+      {!distance && <Typography variant="body2"><strong>Главный город региона</strong></Typography>}
+
+      <Stack direction={"row"} justifyContent={"space-between"} height={"100%"}>
         <Typography variant="caption">
           {item.totalArea ? item.totalArea + " м²" : "-"}
         </Typography>

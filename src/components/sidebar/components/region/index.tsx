@@ -16,6 +16,8 @@ export const Region = ({}: Props) => {
 
   const itemRegion = items.find(obj => obj.id === Number(region.value)) || null
   const itemMainTown = items.find(obj => obj.id === itemRegion?.mainTownId) || null
+  
+  console.log({itemRegion, itemMainTown})
 
   useEffect(() => {
     dispatch(setRegion({region: itemRegion, mainTown: itemMainTown}))

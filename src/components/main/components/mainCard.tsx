@@ -34,7 +34,7 @@ export const MainCard = ({item, selected=false}: Props) => {
         sx={{position: "absolute", right: 0, top: 0}}
         size="small"
         onClick={() => {
-          console.log(item)
+          console.log({selected: item})
           dispatch(setSelection(item))
         }}
       />
