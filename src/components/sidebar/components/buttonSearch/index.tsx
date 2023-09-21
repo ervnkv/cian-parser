@@ -9,13 +9,13 @@ type Props = {}
 export const ButtonSearch = ({}: Props) => {
   const dispatch = useAppDispatch()
   
-  const {url} = useAppSelector(state => state.form)
+  const {url, region} = useAppSelector(state => state.form)
 
   return (
     <Button 
         variant={"outlined"} 
         disabled={!url} 
-        onClick={url ? () => dispatch(parseCian(url)) : undefined}
+        onClick={url ? () => dispatch(parseCian({url, mainTownId: region.mainTown?.id})) : undefined}
     >
         Поиск
     </Button>

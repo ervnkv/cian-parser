@@ -4,8 +4,13 @@ import { CianParseItem } from "./types";
 
 const parser = new DOMParser();
 
+type ParseProps = {
+  url: string
+  mainTownId?: number
+}
+
 export const parseCian = createAsyncThunk("parse/cian",
-    async (url: string): Promise<CianParseItem[]> => {
+    async ({url, mainTownId}: ParseProps): Promise<CianParseItem[]> => {
       const response = await axios.post("https://fuck-cors.vercel.app/api", {data:{"URL": url}})
       const responseDocument = parser.parseFromString(response.data, 'text/html')
       const scriptObjects = [...responseDocument.getElementsByTagName('script')]
@@ -28,8 +33,10 @@ export const parseCian = createAsyncThunk("parse/cian",
         }
       }
       const array = JSON.parse(json)
-      const cianOffers = array.find((obj: any) => obj.key === "initialState")?.value?.results?.offers
-
+      const cianOffers = array.find((obj: any) => obj.key === "initialState")?.value?.results?.offers as CianParseItem[]
+      if (mainTownId) {
+        return cianOffers.filter(obj => !obj.geo.address.some(address => address.id === mainTownId))
+      }
       return cianOffers
     })
 
