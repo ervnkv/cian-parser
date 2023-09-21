@@ -19,12 +19,13 @@ const parseSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addMatcher(isFulfilled, (state, action: PayloadAction<CianParseItem[]>) => {
-                if (action.payload.length !== 0) {
-                    state.items = action.payload
+            .addMatcher(isFulfilled, (state, action: PayloadAction<{offers: CianParseItem[], links: any[]}>) => {
+                if (action.payload.offers.length !== 0) {
+                    state.items = action.payload.offers
                 } else {
                     state.items = null
                 }
+                console.log({offers: action.payload.offers, links: action.payload.links})
                 state.status = "ok"
                 state.statusText = ""
             })

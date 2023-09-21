@@ -56,6 +56,35 @@ export const {
 
 export default formSlice.reducer
 
+/*
+https://api.cian.ru/search-offers/v2/search-offers-desktop/
+POST
+{
+    "_type": "suburbansale",
+    "engine_version": {
+        "type": "term",
+        "value": 2
+    },
+    "region": {
+        "type": "terms",
+        "value": [
+            2
+        ]
+    },
+    "object_type": {
+        "type": "terms",
+        "value": [
+            1,
+            2,
+            4
+        ]
+    },
+    "geo": {
+        "type": "geo",
+        "value": []
+    }
+}
+*/
 const GetUrl = (data: Form) => {
     const baseURL = "https://cian.ru/cat.php?"
 
