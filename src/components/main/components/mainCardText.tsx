@@ -8,10 +8,8 @@ import { useAppSelector } from "../../../store"
 
 type Props = {
     item: CianParseItem
-    width?: number | string
 }
-export const MainCardText = ({item, width = "100%"}: Props) => {
-
+export const MainCardText = ({item}: Props) => {
   const Currency = (number: number) => new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(number)
 
   const {mainTown} = useAppSelector(state => state.form.region)
@@ -19,7 +17,7 @@ export const MainCardText = ({item, width = "100%"}: Props) => {
 
   const coordinates = `${lat}, ${lng}`
   const fullAddress = item.geo.address
-    .filter(obj => obj.type === "location")
+    // .filter(obj => obj.type === "location")
     .map(obj => obj.shortName)
     .join(", ")
   
@@ -40,7 +38,7 @@ export const MainCardText = ({item, width = "100%"}: Props) => {
   const distance = mainTown ? getDistance(mainTown.lat, mainTown.lng, lat, lng) : null
 
   return (
-    <Stack direction={"column"} width={width} position={"relative"}>
+    <Stack direction={"column"} position={"relative"} flex={1}>
       <Typography variant="body2" width={"95%"}><strong>Адрес</strong> - {fullAddress}</Typography>
       {distance && <Typography variant="body2"><strong>Расстояние до {mainTown?.name}</strong> - {distance ? distance : "-"}</Typography>}
       {!distance && <Typography variant="body2"><strong>Главный город региона</strong></Typography>}

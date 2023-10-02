@@ -39,8 +39,8 @@ export const MainCard = ({item, selected=false}: Props) => {
         }}
       />
       <Stack direction={"row"} height={"100%"} gap={1}>
-        <MainCardCarousel width="30%" urls={urls || []}/>
-        <MainCardText width="70%" item={item}/>
+        <MainCardCarousel urls={urls || []}/>
+        <MainCardText item={item}/>
       </Stack>
     </Card>
   )

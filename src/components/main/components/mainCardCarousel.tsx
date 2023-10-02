@@ -7,22 +7,24 @@ import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material"
 
 type Props = {
     urls: string[]
-    width?: number | string
 }
-export const MainCardCarousel = ({urls, width = "30%"}: Props) => {
+export const MainCardCarousel = ({urls}: Props) => {
     const [activeStep, setActiveStep] = useState(0)
 
     const count = urls.length
     return (
         <Box
-            width={width}
-            // height={"100%"}
-            sx={{
+            flex={1}
+            sx={theme=>{return{
                 display: "flex", 
                 justifyContent: "center", 
                 alignItems: "flex-start", 
                 position: "relative",
-            }}
+                width: "30%",
+                [theme.breakpoints.down("lg")]: {
+                    width: "60%",
+                },
+            }}}
         >
             {count === 0 && <Typography alignSelf={"center"} textAlign={"center"}>Нет фото</Typography>}
             {count !== 0 &&
@@ -33,12 +35,17 @@ export const MainCardCarousel = ({urls, width = "30%"}: Props) => {
                         steps={count}
                         position="static"
                         activeStep={activeStep}
-                        sx={{ maxWidth: "100%", position: "absolute", bottom: 0, background: "hwb(0 0% 100% / 0.2)"}}
+                        sx={{ position: "absolute", fontSize: "0.8rem", bottom: 0, background: "hwb(0 0% 100% / 0.2)"}}
                         backButton={
                             <Button 
                                 disabled={activeStep === 0} 
                                 onClick={() => setActiveStep((prev) => prev - 1)} 
-                                sx={{px:0, minWidth: "5rem"}}
+                                sx={theme=>{return{
+                                    px:0, 
+                                    width: "1rem",
+                                    // flexGrow: 1,
+                                    // flexShrink: 1
+                                }}}
                             >
                                 <KeyboardArrowLeft />
                             </Button>
@@ -47,7 +54,12 @@ export const MainCardCarousel = ({urls, width = "30%"}: Props) => {
                             <Button 
                                 disabled={activeStep === (count - 1)} 
                                 onClick={() => setActiveStep((prev) => prev + 1)}
-                                sx={{px:0, minWidth: "5rem"}}
+                                sx={theme=>{return{
+                                    px:0, 
+                                    width: "1rem",
+                                    // flexGrow: 1,
+                                    // flexShrink: 1
+                                }}}
                             >
                                 <KeyboardArrowRight/>
                             </Button>

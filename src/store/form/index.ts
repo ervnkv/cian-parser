@@ -23,7 +23,8 @@ const initialState = {
     region: {
         region: null as null | Region,
         mainTown: null as null | Region,
-    }
+    },
+    showMore: true,
     
 }
 const formSlice = createSlice({
@@ -46,12 +47,16 @@ const formSlice = createSlice({
                 state.region = action.payload
             }
         },
+        toggleShowMore(state) {
+            state.showMore = !state.showMore
+        },
     },
 })
 
 export const {
     setData,
-    setRegion
+    setRegion,
+    toggleShowMore
 } = formSlice.actions
 
 export default formSlice.reducer

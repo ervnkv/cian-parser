@@ -11,8 +11,8 @@ function App() {
       height={"100dvh"} 
       width={"100dvw"}
     >
-      <Sidebar width={"25rem"}/>
-      <Main/>
+      <Sidebar />
+      <Main />
     </Stack>
   )
 }

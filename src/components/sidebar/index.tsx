@@ -16,47 +16,60 @@ import { Price } from "./components/price";
 import { Area } from "./components/area";
 import { ButtonSearch } from "./components/buttonSearch";
 import { ButtonExport } from "./components/buttonExport";
+import { ButtonHide } from "./components/buttonHide";
 
 
-type Props = {
-    width?: string | number
-}
-export const Sidebar = ({width}: Props) => {
+type Props = {}
+export const Sidebar = ({}: Props) => {
   const dispatch = useAppDispatch()
   
-  const {url} = useAppSelector(state => state.form)
+  const {url, showMore} = useAppSelector(state => state.form)
 
   return (
-    <Stack 
-        direction={"column"} 
-        width={width || "100%"} 
-        maxWidth={width || "100%"}
-        gap={5} 
-        position={"relative"} 
-        sx={{
+    <Stack
+        direction={"row"}
+        gap={1} 
+        sx={theme => {return{
             background: "hsl(0,0%,10%)",
-            p:"1rem"
-        }}
+            p:"1rem",
+            width: showMore ? "35rem" : "auto",
+            [theme.breakpoints.down('sm')]: {
+                p: "0.5rem",
+                width: showMore ? "100vw" : "auto",
+            },
+        }}}
     >
-        <Region />
-        <DealType />
-        <Category />
-        <FlatType />
-        <FlatRoom />
-        <SuburbanType />
-        <SuburbanHeating />
-        <SuburbanCommunication />
-        <OfficeType />
-        <Price/>
-        <Area/>
-      
-        <ButtonSearch />
+        {showMore &&
+            <Stack
+                sx={theme => {return{
+                    gap:"4rem",
+                    [theme.breakpoints.down('sm')]: {
+                        gap: "1rem",
+                    },
+                }}} 
+            >
+                <Region />
+                <DealType />
+                <Category />
+                <FlatType />
+                <FlatRoom />
+                <SuburbanType />
+                <SuburbanHeating />
+                <SuburbanCommunication />
+                <OfficeType />
+                <Price/>
+                <Area/>
+            
+                <ButtonSearch />
 
-        <Link variant="caption" alignSelf={"center"} sx={{wordWrap: "break-word"}} href={url}>
-            Ссылка на поиск Циан
-        </Link>
+                <Link variant="caption" alignSelf={"center"} sx={{wordWrap: "break-word"}} href={url}>
+                    Ссылка на поиск Циан
+                </Link>
 
-        <ButtonExport />
+                <ButtonExport />
+            </Stack>
+        }
+        <ButtonHide />
     </Stack>
   )
 }
