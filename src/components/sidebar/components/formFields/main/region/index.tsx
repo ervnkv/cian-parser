@@ -1,9 +1,9 @@
 // Компоненты
-import { SelectSingle } from "../../../lowLevel/selectSingle"
+import { SelectSingle } from "../../../../../lowLevel/selectSingle"
 import { items } from "./items"
 // Redux-toolkit
-import { useAppDispatch, useAppSelector } from "../../../../store"
-import { setData, setRegion } from "../../../../store/form"
+import { useAppDispatch, useAppSelector } from "../../../../../../store"
+import { setData, setRegion } from "../../../../../../store/form"
 import { useEffect } from "react"
 
 
@@ -17,7 +17,7 @@ export const Region = ({}: Props) => {
   const itemRegion = items.find(obj => obj.id === Number(region.value)) || null
   const itemMainTown = items.find(obj => obj.id === itemRegion?.mainTownId) || null
   
-  console.log({itemRegion, itemMainTown})
+  console.log(items)
 
   useEffect(() => {
     dispatch(setRegion({region: itemRegion, mainTown: itemMainTown}))
@@ -33,7 +33,7 @@ export const Region = ({}: Props) => {
         value={region.value}
         onChange={value => dispatch(setData({
           region: {
-            value_type: "single",
+            type: "term",
             value: String(value)
           }
         }))}

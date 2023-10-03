@@ -1,25 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Form } from "./types";
-import { Item as Region } from "../../components/sidebar/components/region/types";
+import { Item as Region } from "../../components/sidebar/components/formFields/main/region/types";
 
 const dataDefault: Form = {
-    deal_type: {
-        value_type: "single",
-        value: "sale" || "rent"
-        
-    },
+    _type: "suburbansale",
     engine_version: {
-        value_type: "single",
+        type: "term",
         value: "2"
     },
     region: {
-        value_type: "single",
+        type: "term",
         value: "1"
     },
 }
 const initialState = {
     data: dataDefault,
-    url: "",
     region: {
         region: null as null | Region,
         mainTown: null as null | Region,
@@ -37,7 +32,6 @@ const formSlice = createSlice({
             } else {
                 const new_data = {...state.data, ...action.payload}
                 state.data = new_data
-                state.url = GetUrl(new_data)
             }
         },
         setRegion(state, action: PayloadAction<typeof state.region>) {
@@ -65,64 +59,100 @@ export default formSlice.reducer
 https://api.cian.ru/search-offers/v2/search-offers-desktop/
 POST
 {
-    "_type": "suburbansale",
-    "engine_version": {
-        "type": "term",
-        "value": 2
-    },
-    "region": {
-        "type": "terms",
-        "value": [
-            2
-        ]
-    },
-    "object_type": {
-        "type": "terms",
-        "value": [
-            1,
-            2,
-            4
-        ]
-    },
-    "geo": {
-        "type": "geo",
-        "value": []
+    "jsonQuery": {
+        "_type": "suburbansale",
+        "engine_version": {
+            "type": "term",
+            "value": 2
+        },
+        "region": {
+            "type": "terms",
+            "value": [
+                2
+            ]
+        },
+        "object_type": {
+            "type": "terms",
+            "value": [
+                1,
+                2,
+                4
+            ]
+        },
+        "geo": {
+            "type": "geo",
+            "value": []
+        }
+    }
+}
+
+{
+    "jsonQuery": {
+        "_type": "suburbansale",
+        "engine_version": {
+            "type": "term",
+            "value": 2
+        },
+        "region": {
+            "type": "terms",
+            "value": [
+                2
+            ]
+        },
+        "currency": {
+            "type": "term",
+            "value": 2
+        },
+        "object_type": {
+            "type": "terms",
+            "value": [
+                3,
+                4
+            ]
+        }
+    }
+}
+
+{
+    "jsonQuery": {
+        "_type": "flatsale",
+        "engine_version": {
+            "type": "term",
+            "value": 2
+        },
+        "region": {
+            "type": "terms",
+            "value": [
+                2
+            ]
+        },
+        "currency": {
+            "type": "term",
+            "value": 2
+        },
+        "building_status": {
+            "type": "term",
+            "value": 2
+        },
+        "with_newobject": {
+            "type": "term",
+            "value": true
+        },
+        "room": {
+            "type": "terms",
+            "value": [
+                2,
+                3,
+                4
+            ]
+        },
+        "price": {
+            "type": "range",
+            "value": {
+                "gte": 50000,
+                "lte": 50000000
+            }
+        }
     }
 }
 */
-const GetUrl = (data: Form) => {
-    const baseURL = "https://cian.ru/cat.php?"
-
-    const keys = Object.keys(data) as (keyof Form)[]
-    
-    const params = keys.map((key) => {
-        const obj = data[key]
-        if (!obj) return
-        const type = obj.value_type
-        const encodedKey = encodeURIComponent(key)
-        switch (type) {
-            case "single":
-                const encodedValue = encodeURIComponent(obj.value)
-                return `${encodedKey}=${encodedValue}`
-            case "multi":
-                return obj.value.map((value, index) => {
-                    const encodedValue = encodeURIComponent(value)
-                    return `${encodedKey}[${index}]=${encodedValue}`
-                }).join("&")
-            case "multikey":
-                return obj.value.map((value, index) => {
-                    const encodedValue = encodeURIComponent(value)
-                    return `${encodedValue}=1`
-                }).join("&")
-            case "range":
-                const encodedKeyFrom = encodeURIComponent( key.includes("_") ? "min_" + key : "min" + key )
-                const encodedKeyTo = encodeURIComponent(key.includes("_") ? "max_" + key : "max" + key )
-                const from = obj.value.from ? encodedKeyFrom + "=" + obj.value.from : null
-                const to = obj.value.to ? encodedKeyTo + "=" + obj.value.to : null
-                return [from,to].filter(obj => !!obj).join("&")
-        }
-
-    }).filter(obj => !!obj).join("&")
-    
-    return baseURL+params
-}

@@ -1,9 +1,9 @@
 // Компоненты
-import { SelectMulti } from "../../../lowLevel/selectMulti"
+import { SelectMulti } from "../../../../../lowLevel/selectMulti"
 import { items } from "./items"
 // Redux-toolkit
-import { useAppDispatch, useAppSelector } from "../../../../store"
-import { setData } from "../../../../store/form"
+import { useAppDispatch, useAppSelector } from "../../../../../../store"
+import { setData } from "../../../../../../store/form"
 
 type Props = {}
 
@@ -24,7 +24,7 @@ export const FlatType = ({}: Props) => {
         value={object_type?.value || []}
         onChange={value => dispatch(setData({
           object_type: {
-            value_type: "multi",
+            type: "terms",
             value: value
           }
         }))}

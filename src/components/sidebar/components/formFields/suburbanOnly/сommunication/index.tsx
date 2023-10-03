@@ -1,9 +1,9 @@
 // Компоненты
-import { SelectMulti } from "../../../lowLevel/selectMulti"
+import { SelectMulti } from "../../../../../lowLevel/selectMulti"
 import { items } from "./items"
 // Redux-toolkit
-import { useAppDispatch, useAppSelector } from "../../../../store"
-import { setData } from "../../../../store/form"
+import { useAppDispatch, useAppSelector } from "../../../../../../store"
+import { setData } from "../../../../../../store/form"
 
 type Props = {}
 
@@ -23,7 +23,7 @@ export const SuburbanCommunication = ({}: Props) => {
         value={communication?.value || []}
         onChange={value => dispatch(setData({
           communication: {
-            value_type: "multikey",
+            type: "multikey",
             value: value
           }
         }))}

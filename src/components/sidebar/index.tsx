@@ -3,17 +3,16 @@ import { Link, Stack } from "@mui/material";
 // Redux-toolkit
 import { useAppDispatch, useAppSelector } from "../../store";
 // Компоненты
-import { Region } from "./components/region";
-import { DealType } from "./components/dealType";
-import { Category } from "./components/category";
-import { FlatType } from "./components/flatType";
-import { FlatRoom } from "./components/flatRoom";
-import { SuburbanHeating } from "./components/suburbanHeating";
-import { SuburbanCommunication } from "./components/сommunication";
-import { SuburbanType } from "./components/suburbanType";
-import { OfficeType }  from "./components/officeType";
-import { Price } from "./components/price";
-import { Area } from "./components/area";
+import { Region } from "./components/formFields/main/region";
+import { CategoryDeal } from "./components/formFields/main/categoryDeal";
+import { FlatType } from "./components/formFields/flatOnly/flatType";
+import { FlatRoom } from "./components/formFields/flatOnly/flatRoom";
+import { SuburbanHeating } from "./components/formFields/suburbanOnly/suburbanHeating";
+import { SuburbanCommunication } from "./components/formFields/suburbanOnly/сommunication";
+import { SuburbanType } from "./components/formFields/suburbanOnly/suburbanType";
+import { OfficeType }  from "./components/formFields/commercialOnly/officeType";
+import { Price } from "./components/formFields/main/price";
+import { Area } from "./components/formFields/main/area";
 import { ButtonSearch } from "./components/buttonSearch";
 import { ButtonExport } from "./components/buttonExport";
 import { ButtonHide } from "./components/buttonHide";
@@ -23,7 +22,7 @@ type Props = {}
 export const Sidebar = ({}: Props) => {
   const dispatch = useAppDispatch()
   
-  const {url, showMore} = useAppSelector(state => state.form)
+  const {showMore} = useAppSelector(state => state.form)
 
   return (
     <Stack
@@ -42,29 +41,30 @@ export const Sidebar = ({}: Props) => {
         {showMore &&
             <Stack
                 sx={theme => {return{
-                    gap:"4rem",
+                    width: "100%",
+                    gap:"2rem",
                     [theme.breakpoints.down('sm')]: {
                         gap: "1rem",
                     },
                 }}} 
             >
                 <Region />
-                <DealType />
-                <Category />
-                <FlatType />
-                <FlatRoom />
-                <SuburbanType />
-                <SuburbanHeating />
-                <SuburbanCommunication />
-                <OfficeType />
-                <Price/>
-                <Area/>
+                <CategoryDeal />
+                {/* <Category /> */}
+                {/* <FlatType /> */}
+                {/* <FlatRoom /> */}
+                {/* <SuburbanType /> */}
+                {/* <SuburbanHeating /> */}
+                {/* <SuburbanCommunication /> */}
+                {/* <OfficeType /> */}
+                {/* <Price/> */}
+                {/* <Area/> */}
             
                 <ButtonSearch />
 
-                <Link variant="caption" alignSelf={"center"} sx={{wordWrap: "break-word"}} href={url}>
+                {/* <Link variant="caption" alignSelf={"center"} sx={{wordWrap: "break-word"}}>
                     Ссылка на поиск Циан
-                </Link>
+                </Link> */}
 
                 <ButtonExport />
             </Stack>

@@ -1,37 +1,32 @@
 export type Form = {
-    deal_type: FormParamSingle
+    _type: string
     engine_version: FormParamSingle
     region: FormParamSingle
-    offer_type?: FormParamSingle
+    // offer_type?: FormParamSingle
     object_type?: FormParamMulti
-    room?: FormParamMultiKey
+    room?: FormParamMulti
     office_type?: FormParamMulti
     heating_type?: FormParamMulti
-    communication?: FormParamMultiKey
+    communication?: FormParamMulti
     area?: FormParamRange
     price?: FormParamRange
 }
 
-// Параметр с единственным значением. deal_type: {value: 2} => deal_type=2
+// Параметр с единственным значением
 type FormParamSingle = {
-    value_type: "single", 
+    type: "term", 
     value: string
 }
-// Параметр с массивом значений. object_type: {value: [2,3]} => object_type=2&object_type=3
+// Параметр с массивом значений
 type FormParamMulti = {
-    value_type:  "multi"
+    type:  "terms"
     value: string[]
 }
-// Параметр с массивом ключей. room: {value: [room0,room1]} => room0=1&room1=1
-type FormParamMultiKey = {
-    value_type: "multikey"
-    value: string[]
-}
-
+// Параметр с диапазоном
 type FormParamRange = {
-    value_type: "range", 
+    type: "range", 
     value: {
-        from?: number, 
-        to?: number,
+        gte?: number, 
+        lte?: number,
     }
 }

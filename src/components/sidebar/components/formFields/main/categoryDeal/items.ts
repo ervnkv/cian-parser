@@ -1,6 +1,17 @@
 import { Item } from "./types";
 
-export const items: Item[] = [
+export const itemsDeal: Item[] = [
+    {
+        id: "sale",
+        desc: "Купить"
+    },
+    {
+        id: "rent",
+        desc: "Снять"
+    },
+]
+
+export const itemsCategory: Item[] = [
     {
         id: "flat",
         desc: "Квартиры"
@@ -10,7 +21,7 @@ export const items: Item[] = [
         desc: "Загородное"
     },
     {
-        id: "offices",
+        id: "commercial",
         desc: "Коммерческое"
     },
 ]

@@ -1,9 +1,9 @@
 // Компоненты
-import { SelectMulti } from "../../../lowLevel/selectMulti"
+import { SelectMulti } from "../../../../../lowLevel/selectMulti"
 import { items } from "./items"
 // Redux-toolkit
-import { useAppDispatch, useAppSelector } from "../../../../store"
-import { setData } from "../../../../store/form"
+import { useAppDispatch, useAppSelector } from "../../../../../../store"
+import { setData } from "../../../../../../store/form"
 
 
 type Props = {}
@@ -24,7 +24,7 @@ export const FlatRoom = ({}: Props) => {
         value={room?.value || []}
         onChange={value => dispatch(setData({
           room: {
-            value_type: "multikey",
+            type: "multikey",
             value: value
           }
         }))}

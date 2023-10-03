@@ -1,8 +1,8 @@
 // Компоненты
-import { RangeField } from "../../../lowLevel/rangeField"
+import { RangeField } from "../../../../../lowLevel/rangeField"
 // Redux-toolkit
-import { useAppDispatch, useAppSelector } from "../../../../store"
-import { setData } from "../../../../store/form"
+import { useAppDispatch, useAppSelector } from "../../../../../../store"
+import { setData } from "../../../../../../store/form"
 
 
 type Props = {}
@@ -19,7 +19,7 @@ export const Area = ({}: Props) => {
       value_to={area?.value.to}
       onChange={value => dispatch(setData({
             area: {
-              value_type: "range",
+              type: "range",
               value: value
             }
       }))}
